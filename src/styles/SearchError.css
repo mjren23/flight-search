@@ -1,0 +1,17 @@
+.error {
+    background-color: rgb(255, 223, 129);
+    padding: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-top: 50px;
+    margin-left: 30%;
+    margin-right: 30%;
+    min-width: 300px;
+    border-radius: 5px;
+    flex-direction: row;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    color: rgb(136, 102, 0);
+    font-weight: bold;
+}

@@ -1,0 +1,110 @@
+.result {
+    background-color: aliceblue;
+    padding: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-left: 20%;
+    margin-right: 20%;
+    min-width: 600px;
+    border-radius: 5px;
+    flex-direction: row;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+#cheapest {
+    padding: 20px;
+    background-color: rgb(175, 218, 255);
+    font-size: larger;
+    margin-left: 18%;
+    margin-right: 18%;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.price {
+    font-weight: bold;
+    font-size: larger;
+    align-self: center;
+    flex-grow: 1;
+    flex-basis: 80px;
+}
+
+.price-container{
+    display: flex;
+    flex-grow: 1;
+    flex-basis: 80px;
+    justify-content: center;
+}
+
+.carrier {
+    color: rgb(97, 97, 97);
+    order: 50;
+    align-self: center;
+    font-weight: bold;
+    flex-grow: 1;
+    flex-basis: 80px;
+}
+
+.locations {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    flex-basis: 80px;
+    justify-content: space-around;
+}
+
+.airports {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.location {
+    margin-left: 10px;
+    margin-right: 10px;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+#arrow {
+    align-self: flex-start;
+    margin-top: -3px;
+}
+
+.icons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+}
+
+
+.date {
+    font-size: large;
+    color: #2762e0;
+    font-weight: bold;
+    
+}
+
+.direct {
+    font-size: small;
+    margin-top: 15px;
+    
+}
+
+
+.double {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    flex-grow: 1;
+    flex-basis: 80px;
+}
+
+#roundtripDate {
+    align-self: center;
+}
+

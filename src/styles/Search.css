@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.group {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    align-self: center;
+}
+
+
+label {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    text-align: right;
+    font-size: medium;
+    line-height: 26px;
+    width: 400px;
+    margin-bottom: 10px;
+    color: gray;
+    align-items: center;
+}
+  
+
+.dateinput {
+  height: 20px;
+  flex: 0 0 200px;
+  margin-left: 10px;
+  padding-top: 9px;
+  padding-bottom: 9px;
+  padding-left: 5px;
+  margin-top: 5px;
+  font-size: medium;
+  color: gray;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  border-width: 0.5px;
+  border-color: #d6d6d6;
+  border-style: solid;
+  width: 250px;
+}
+
+
+.enter {
+    background-color: #2762e0;
+    border-radius: 15px;
+    padding: 5px 40px;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    font-size: 1.3vw;
+    
+}
+
+.button {
+  align-self: center;
+  margin-bottom: 10px;
+}
+
+.alert {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(243, 138, 138);
+  margin-left: 40%;
+  margin-right: 40%;
+  min-width: 400px;
+  margin-top: 10px;
+  border-radius: 5px;
+  padding: 2px;
+}
+
+.alertheading {
+  flex: 1;
+  font-weight: bold;
+  color: rgb(65, 53, 53);
+}
+
+.alert > button {
+  align-self: flex-end;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#disabled {
+  cursor: not-allowed;
+  background-color: gray;
+}
+
+.loader-container {
+  display: flex;
+  justify-content: center;
+}
+
+.currencies {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+.title {
+  font-size: 50px;
+  flex: 1;
+  font-family: 'Open-Sans', sans-serif;
+  font-weight: bolder;
+  margin: 20px;
+  color: #2762e0;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-grow: 0;
+}
+
+.border {
+  border-style: solid;
+  border-color: lightgray;
+  border-radius: 10px;
+  border-width: 2px;
+  margin-right: 30px;
+  margin-left: 30px;
+  flex: 1;
+  min-height: 100%;
+}
+
+.master {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 95vh;
+}
+
+
+.airplane {
+  object-fit: contain;
+  max-width: 50%;
+  max-height: 50%;
+  align-self: center;
+}
+
+
+
+
+

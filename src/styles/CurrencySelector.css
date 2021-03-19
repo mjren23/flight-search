@@ -1,0 +1,27 @@
+.button-currency {
+    border-color: gray;
+    border-radius: 5px;
+    border-width: 2px;
+    border-style: solid;
+    padding: 10px;
+    color: gray;
+    padding-right: 15px;
+    padding-left: 15px;
+    cursor: pointer;
+    align-self: center;
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.select {
+    width: 200px;
+    border-color: gray;
+    border-radius: 5px;
+    border-width: 2px;
+    border-style: solid;
+    padding: 10px;
+    color: gray;
+    padding-right: 15px;
+    padding-left: 15px;
+}
