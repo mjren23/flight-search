@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/flight-search/static/css/main.fddc87e1.chunk.css",
+    "main.css": "/flight-search/static/css/main.1b8b36db.chunk.css",
     "main.js": "/flight-search/static/js/main.6aaa0936.chunk.js",
     "main.js.map": "/flight-search/static/js/main.6aaa0936.chunk.js.map",
     "runtime-main.js": "/flight-search/static/js/runtime-main.03b38031.js",
@@ -12,7 +12,7 @@
     "static/js/3.dfe491ea.chunk.js.map": "/flight-search/static/js/3.dfe491ea.chunk.js.map",
     "index.html": "/flight-search/index.html",
     "static/css/2.d22f252f.chunk.css.map": "/flight-search/static/css/2.d22f252f.chunk.css.map",
-    "static/css/main.fddc87e1.chunk.css.map": "/flight-search/static/css/main.fddc87e1.chunk.css.map",
+    "static/css/main.1b8b36db.chunk.css.map": "/flight-search/static/css/main.1b8b36db.chunk.css.map",
     "static/js/2.c5b1243a.chunk.js.LICENSE.txt": "/flight-search/static/js/2.c5b1243a.chunk.js.LICENSE.txt",
     "static/media/airplane.bf6b8490.png": "/flight-search/static/media/airplane.bf6b8490.png",
     "static/media/arrow_back-24px.037e7aeb.svg": "/flight-search/static/media/arrow_back-24px.037e7aeb.svg",
@@ -24,7 +24,7 @@
     "static/js/runtime-main.03b38031.js",
     "static/css/2.d22f252f.chunk.css",
     "static/js/2.c5b1243a.chunk.js",
-    "static/css/main.fddc87e1.chunk.css",
+    "static/css/main.1b8b36db.chunk.css",
     "static/js/main.6aaa0936.chunk.js"
   ]
 }
