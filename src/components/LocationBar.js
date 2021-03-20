@@ -30,8 +30,8 @@ class LocationBar extends React.Component {
             url: `${url}/${country}/${currency}/${locale}/`,
             params: {query: input},
             headers: {
-              'x-rapidapi-key': '206f8b7770msh3b6406f406cd87bp19f0a9jsna2fbc9477909',
-              'x-rapidapi-host': 'skyscanner-skyscanner-flight-search-v1.p.rapidapi.com'
+                'x-rapidapi-key': process.env.REACT_APP_KEY,
+                'x-rapidapi-host': process.env.REACT_APP_HOST,
             }
           };
 
