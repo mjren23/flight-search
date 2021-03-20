@@ -76,8 +76,9 @@
 .icons {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
-
+    justify-content: space-evenly;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 

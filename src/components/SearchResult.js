@@ -39,7 +39,7 @@ class SearchResult extends React.Component {
         }
     }
 
-    getAirports() {
+    getAirports() { // display either one or two sets of destination-origin pairs 
         if (!this.state.roundtrip) {
             return (
                 <div className="locations">
@@ -97,7 +97,7 @@ class SearchResult extends React.Component {
         }
     }
 
-    getDates() {
+    getDates() { // display either one or two dates, depending on round trip
         if (!this.state.roundtrip) {
             return (
                 <div className="dateChunk">

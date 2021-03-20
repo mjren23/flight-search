@@ -18,7 +18,7 @@ class CurrencySelector extends React.Component {
 
     }
 
-    getCurrencies() {
+    getCurrencies() { // when user clicks, fetch and load all currencies to be searchable
     
         var options = {
             method: 'GET',
@@ -56,7 +56,7 @@ class CurrencySelector extends React.Component {
         }
         else {
             return (
-                <div className="button-currency">$</div>
+                <div className="button-currency">$</div> // start off with USD by default
             )
         }
     }

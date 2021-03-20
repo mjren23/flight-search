@@ -2,7 +2,7 @@ import React from 'react';
 import Search from './Search.js'
 import CurrencySelector from './CurrencySelector.js'
 
-class FlightHome extends React.Component {
+class FlightHome extends React.Component { // holds the header and main search component
     
     constructor(props) {
         super(props)
@@ -15,8 +15,7 @@ class FlightHome extends React.Component {
 
     }
 
-    pickCurrency(currency) {
-        console.log("setting currency to " + currency.label)
+    pickCurrency(currency) { // to be called from currency selector component, when the user changes the currency
         this.setState({
             currency: currency.label
         })

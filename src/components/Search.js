@@ -27,7 +27,7 @@ class Search extends React.Component {
             roundtrip: false,
             message: "Dates must be at least one day in the future",
         };
-        console.log("constructor")
+
         this.handleLocationChange = this.handleLocationChange.bind(this);
         this.handleDepartureDateSelect = this.handleDepartureDateSelect.bind(this);
         this.handleDepartureDateChange = this.handleDepartureDateChange.bind(this);
@@ -41,13 +41,12 @@ class Search extends React.Component {
 
     }
 
-    handleLocationChange = (newValue, id) => {
-        console.log(this.state.returnDate)
-        if (id == "destination"){
+    handleLocationChange = (newValue, id) => { // to be called from LocationBar when user picks an airport from the list
+        if (id === "destination"){
             this.setState( {
                 destination: newValue.value
             })
-            if (this.state.origin.length > 0) {
+            if (this.state.origin.length > 0) { // user has entered both a destination and origin, make button valid
                 this.setState({
                     buttonShow: true
                 })
@@ -57,7 +56,7 @@ class Search extends React.Component {
             this.setState({
                 origin: newValue.value
             })
-            if (this.state.destination.length > 0) {
+            if (this.state.destination.length > 0) { // user has entered both a destination and origin, make button valid
                 this.setState({
                     buttonShow: true
                 })
@@ -65,44 +64,32 @@ class Search extends React.Component {
         }
     }
 
-    handleDepartureDateSelect(e) {
-        console.log("date select  ")
-        console.log(e)
-        // this.setState({
-        //     departureDate: null
-        // })
+    handleDepartureDateSelect(e) { 
         this.setState({
             departureDate: e
         })
     }
 
     handleDepartureDateChange(e) {
-        console.log("date  change")
-        console.log(e)
-        // this.setState({
-        //     departureDate: null
-        // })
         this.setState({
             departureDate: e
         })
     }
 
     handleReturnDateSelect(e) {
-        console.log("DATE")
-        console.log(e)
         this.setState({
             returnDate: e,
         })
     }
 
     handleReturnDateChange(e) {
-        if (e == null) {
+        if (e == null) { // round trip
             this.setState({
                 returnDate: e,
                 roundtrip: false,
             })
         }
-        else {
+        else { // don't make this a round trip if user deletes date
             this.setState({
                 returnDate: e,
                 roundtrip: true,
@@ -111,14 +98,14 @@ class Search extends React.Component {
     }
 
     onSearch() {
-        this.setState({
+        this.setState({ // for rerender purposes
             results: null
         })
-        console.log("currency! " + this.state.currency)
+
         const date = this.state.departureDate
         const date_return = this.state.returnDate
 
-        if (this.state.roundtrip && (this.state.returnDate < this.state.departureDate)) {
+        if (this.state.roundtrip && (this.state.returnDate < this.state.departureDate)) { // error handling
             this.setState({
                 showAlert: true,
                 loading: false,
@@ -127,22 +114,19 @@ class Search extends React.Component {
             return;
         }
 
-
-
         const date1 = new Date()
 
-        var date1_tomorrow = new Date(date1.getFullYear(), date1.getMonth(), date1.getDate() + 1);
+        var date1_tomorrow = new Date(date1.getFullYear(), date1.getMonth(), date1.getDate() + 1); // api only takes dates a day from now
 
         if (date1_tomorrow.getFullYear() <= date.getFullYear() && date1_tomorrow.getMonth() <= date.getMonth() && date1_tomorrow.getDate() <= date.getDate()) {
             const url = "https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0"
         
             const headers = {
-                'x-rapidapi-key': process.env.REACT_APP_KEY,
+                'x-rapidapi-key': process.env.REACT_APP_KEY, // get key from .env file
                 'x-rapidapi-host': process.env.REACT_APP_HOST,
             }
             const country = "US"
             const currency = this.state.currency
-            console.log(currency)
             const locale = "en-US"
             const originplace = this.state.origin
             const destinationplace = this.state.destination
@@ -158,14 +142,20 @@ class Search extends React.Component {
                 this.readResponse(response)
             }, (error) => {
                 console.log(error)
+                this.setState({
+                    showAlert: true,
+                    message: "Error calling API. Check your connection",
+                    loading: false,
+                })
+                return;
             })
-            this.setState({
+            this.setState({ // handle display loader and airplane image
                 loading: true,
                 showImage: false,
             })
         }
         else {
-            this.setState({
+            this.setState({ // error state
                 showAlert: true,
                 loading: false,
                 message: "Dates must be at least one day in the future",
@@ -173,7 +163,7 @@ class Search extends React.Component {
         }
     }
 
-    readResponse(response) {
+    readResponse(response) { // parse the api response to be read into an array of SearchResults
         console.log(response)
         var carriers = new Map()
         Array.from(response.data.Carriers).forEach(carrier => {carriers.set(carrier.CarrierId, carrier.Name)})
@@ -182,11 +172,10 @@ class Search extends React.Component {
         const places_code = new Map()
         Array.from(response.data.Places).forEach(place => {places_code.set(place.PlaceId, place.SkyscannerCode)})
 
-        console.log(carriers)
         var newResults = []
 
         
-        if (response.data.Quotes.length > 0) {
+        if (response.data.Quotes.length > 0) { // calculate cheapest result
             var cheapest_index = 0
             var price = response.data.Quotes[0].MinPrice
             for (var i = 1; i < response.data.Quotes.length; i++) {
@@ -199,14 +188,14 @@ class Search extends React.Component {
         }
         for (var j = 0; j < response.data.Quotes.length; j++) {
             let quote = response.data.Quotes[j]
-            newResults.push(<SearchResult 
+            newResults.push(<SearchResult key={j}
                 price={quote.MinPrice} 
                 carrier={carriers.get(quote.OutboundLeg.CarrierIds[0])}
                 direct={quote.Direct}
                 destination={places_code.get(quote.OutboundLeg.DestinationId)}
                 origin={places_code.get(quote.OutboundLeg.OriginId)}
                 currency={this.state.currency}
-                cheapest={j == cheapest_index ? true : false}
+                cheapest={j === cheapest_index ? true : false}
                 date={this.state.departureDate}
                 roundtrip={this.state.roundtrip}
                 inboundleg={this.state.roundtrip ? quote.InboundLeg : null}
@@ -214,8 +203,6 @@ class Search extends React.Component {
                 />)
         }
         
-        console.log("new results")
-        console.log(newResults)
 
         this.setState({
             results: newResults,
@@ -225,8 +212,8 @@ class Search extends React.Component {
 
     }
 
-    showResults() {
-        if (this.state.results != null) {
+    showResults() { // display error if no flights found, otherwise, display results
+        if (this.state.results != null) { 
             if (this.state.results.length > 0) {
                 console.log("here")
                 console.log(this.state.results)
@@ -237,15 +224,12 @@ class Search extends React.Component {
                 )
             }
             else {
-                console.log("no results")
-
                 return (
                     <SearchError></SearchError>
                 )
             }
         }
-        else {
-            console.log("null")
+        else { // user hasn't pressed search yet 
             return (
                 <div></div>
             )
@@ -253,8 +237,7 @@ class Search extends React.Component {
     }
 
 
-    showAlert() {
-
+    showAlert() { // handdle error display
         if (this.state.showAlert) {
           return (
             <div className="alert" >
@@ -268,7 +251,7 @@ class Search extends React.Component {
         }
     }
 
-    showLoader() {
+    showLoader() { // handle loader display
         if (this.state.loading) {
             return <ReactLoading type={'balls'} color={"#2762e0"} height={50} width={50} className="loader"/>
         }
@@ -277,9 +260,8 @@ class Search extends React.Component {
         }
     }
 
-    componentDidUpdate(prevProps, prevState) {
-
-        if (prevProps.currency != this.props.currency) {
+    componentDidUpdate(prevProps, prevState) { // update props when user changes currency
+        if (prevProps.currency !== this.props.currency) {
             this.setState({
                 currency: this.props.currency
             })
@@ -287,13 +269,10 @@ class Search extends React.Component {
         }
     }
 
-
     render() {
         return (
             <div className="master">
-
                 <div className="border">
-                
                     <this.showAlert></this.showAlert>
                     
                     <div className="container">
@@ -306,6 +285,7 @@ class Search extends React.Component {
 
                             </LocationBar>
                         </div>
+
                         <div className="group" style={{marginBottom: "10px"}}>
                             <label onClick={e => e.preventDefault()}>
                                 Departure Date:
@@ -332,16 +312,11 @@ class Search extends React.Component {
                     <div className="loader-container">
                         <this.showLoader></this.showLoader>
                     </div>
-
                     {this.state.showImage? <img className="airplane" src={airplane} alt="plane art" /> : <div></div>}
-                
                     <this.showResults></this.showResults>
-
                 </div>
-                
             </div>
         
-    
         )
     }
 }
