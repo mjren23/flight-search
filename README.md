@@ -10,8 +10,8 @@ In the project directory, first run:
 
 ```npm install```
 
-Then, run 
+Then, add a .env file in the root directory and set variables REACT_APP_KEY and REACT_APP_HOST to your RapidAPI key and host respectively. Finally, run
 
 ```npm start``` 
 
-to 
+to see the website in a browser tab.
